@@ -3,6 +3,7 @@
 body {
     font-family: 'Montserrat', sans-serif;
     margin: 0;
+    font-size: 14px;
 }
 
 * {
@@ -19,13 +20,11 @@ body {
 }
 
 .app {
-    
     width: 100%;
     max-width: 700px;
     height: 100%;
     max-height: 500px;
     padding: 15px;
-
 }
 
 .app-title {
@@ -66,7 +65,7 @@ body {
     border: none;
     padding: 15px 15px;
     outline: none;
-    font-size: 16px;
+    font-size: 14px;
     font-family: inherit;
     border-radius: 4px;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 1px -2px;
@@ -123,9 +122,14 @@ body {
     padding: 0;
     margin-top: 30px;
     border-radius: 4px;
-    padding: 5px;
+    padding: 0px;
     background-color: white;
     box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.1);
+}
+
+.placeholder-content{
+    padding: 22px;
+    min-height: 64px;
 }
 
 .todo-item {
@@ -133,6 +137,7 @@ body {
     align-items: center;
     justify-content: space-between;
     gap: 6px;
+    min-height: 64px;
     width: 100%;
     cursor: pointer;
     padding: 14px 10px;
@@ -144,9 +149,6 @@ body {
     gap: 6px;
 }
 
-.todo-item svg{
-    color: rgb(46, 125, 50);
-}
 
 .img-container{
     width: 20px;
@@ -169,8 +171,8 @@ body {
 }
 
 .delete-todo-item:hover {
-    color: black;
-    background-color: rgb(223, 223, 223);
+    color: white;
+    background-color: rgb(224, 18, 18);
 
 }
 

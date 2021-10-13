@@ -42,21 +42,31 @@ function toDoEventListener() {
 
 function emptyTodoList() {
     if (toDoList.innerHTML.trim() == "") {
-        toDoList.innerHTML = "You have no tasks for today!"
+        toDoList.innerHTML = "<div class='placeholder-content'>You have no tasks for today!</div>"
+        toDoList.classList.add("empty")
         return 1;
     }
     return 0;
 }
 
-
+function checkToDoList() {
+    if (toDoList.innerHTML == "<div class='placeholder-content'>You have no tasks for today!</div>") {
+        return "empty";
+    } else {
+        return "not empty";
+    }
+}
 
 
 function newToDo() {
-    const input = document.querySelector(".todo-input").value
-    const newToDo = { content: input, timeCreated: Date() }
-    const li = document.createElement('li');
-    li.className = "todo-item"
-    li.innerHTML = `<div class="todo-item-container">\
+    const input = document.querySelector(".todo-input")
+    if (input.value.trim() != "") {
+
+        const newToDo = { content: input.value, timeCreated: Date() }
+        input.value = "";
+        const li = document.createElement('li');
+        li.className = "todo-item"
+        li.innerHTML = `<div class="todo-item-container">\
                     <div class="img-container">\
                     <img class="todo-image" src="media/circle.svg" alt="">\
                     </div>\
@@ -64,7 +74,14 @@ function newToDo() {
                     </div>\
                     <span class="delete-todo-item">&times;</span>`
 
-    toDoList.appendChild(li)
-    li.addEventListener("click", toDoEventListener)
-    li.querySelector(".delete-todo-item").addEventListener("click", deletetodoEventListener)
+        if (toDoList.classList.contains("empty")) {
+            toDoList.innerHTML = "";
+            toDoList.classList.remove("empty")
+        }
+        toDoList.appendChild(li)
+        li.addEventListener("click", toDoEventListener)
+        li.querySelector(".delete-todo-item").addEventListener("click", deletetodoEventListener)
+    } else {
+        return
+    }
 }
