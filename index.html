@@ -16,39 +16,41 @@
         <div class="app">
             <div class="new-todo-item">
                 <input type="text" class="todo-input" placeholder="Add new to-do item">
-                <button class="btn btn--primary"><img src="media/add.svg" alt="" class="button-svg"></button>
+                <button class="btn btn--primary todo-add"><img src="media/add.svg" alt="" class="button-svg"></button>
             </div>
             <ul class="todo-list">
                 <li class="todo-item">
-                    <div class="img-container">
-                        <img src="media/circle.svg" width="16.67px" alt="">
+                    <div class="todo-item-container">
+                        <div class="img-container">
+                            <img class="todo-image" src="media/circle.svg" alt="">
+                        </div>
+                        <span class="todo-item-content">Buy milk</span>
                     </div>
-                    <span class="todo-item-content">Buy milk</span>
                     <span class="delete-todo-item">&times;</span>
                 </li>
                 <li class="todo-item">
-                    <svg class="" focusable="false" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"
-                        data-testid="SuccessOutlinedIcon">
-                        <path fill="currentColor"
-                            d="M20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4C12.76,4 13.5,4.11 14.2, 4.31L15.77,2.74C14.61,2.26 13.34,2 12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0, 0 22,12M7.91,10.08L6.5,11.5L11,16L21,6L19.59,4.58L11,13.17L7.91,10.08Z">
-                        </path>
-                    </svg>
-                    <span class="todo-item-content">Go to dentist</span>
+                    <div class="todo-item-container">
+                        <div class="img-container">
+                            <img class="todo-image" src="media/circle.svg" alt="">
+                        </div>
+                        <span class="todo-item-content">Go to dentist</span>
+                    </div>
                     <span class="delete-todo-item">&times;</span>
                 </li>
-                <li class="todo-item completed">
-                    <svg class="" focusable="false" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"
-                        data-testid="SuccessOutlinedIcon">
-                        <path fill="currentColor"
-                            d="M20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4C12.76,4 13.5,4.11 14.2, 4.31L15.77,2.74C14.61,2.26 13.34,2 12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0, 0 22,12M7.91,10.08L6.5,11.5L11,16L21,6L19.59,4.58L11,13.17L7.91,10.08Z">
-                        </path>
-                    </svg>
-                    <span class="todo-item-content">Wash clothes</span>
+                <li class="todo-item">
+                    <div class="todo-item-container">
+                        <div class="img-container">
+                            <img class="todo-image" src="media/circle.svg" alt="">
+                        </div>
+                        <span class="todo-item-content">Wash clothes</span>
+                    </div>
                     <span class="delete-todo-item">&times;</span>
                 </li>
             </ul>
         </div>
     </main>
+
+    <script src="scripts/script.js"></script>
 </body>
 
 </html>
