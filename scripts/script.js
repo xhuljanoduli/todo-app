@@ -58,14 +58,17 @@ function checkToDoList() {
 }
 
 
+
+
 function newToDo() {
+
     const input = document.querySelector(".todo-input")
     if (input.value.trim() != "") {
-
-        const newToDo = { content: input.value, timeCreated: Date() }
+        const newToDo = { content: input.value, timeCreated: Date(), completed: false }
+        todos.push(newToDo)
         input.value = "";
         const li = document.createElement('li');
-        li.className = "todo-item"
+        li.className = `todo-item data-id='${newToDo.timeCreated}'`
         li.innerHTML = `<div class="todo-item-container">\
                     <div class="img-container">\
                     <img class="todo-image" src="media/circle.svg" alt="">\
@@ -81,7 +84,57 @@ function newToDo() {
         toDoList.appendChild(li)
         li.addEventListener("click", toDoEventListener)
         li.querySelector(".delete-todo-item").addEventListener("click", deletetodoEventListener)
+        addToLocalStorage(todos);
+        console.log(todos)
+        console.log(localStorage)
     } else {
-        return
+        return;
     }
 }
+
+function addToLocalStorage(todos) {
+    localStorage.setItem("todos", JSON.stringify(todos));
+}
+
+function getFromLocalStorage() {
+    const reference = localStorage.getItem('todos');
+    if (reference) {
+        todos = JSON.parse(reference)
+        renderTodos(todos);
+    }
+}
+
+function renderTodos(todoList) {
+    todoList.forEach(function (item) {
+        const completed = item.completed ? "completed" : null;
+        const li = document.createElement('li');
+        if (completed) {
+            li.className = "todo-item completed"
+            var imgsrc = "media/check.svg";
+        } else {
+            li.className = "todo-item"
+            var imgsrc = "media/circle.svg";
+        }
+
+        li.innerHTML = `<div class="todo-item-container">\
+                            <div class="img-container">\
+                                <img class="todo-image" src="${imgsrc}" alt="">\
+                            </div>\
+                            <span class="todo-item-content">${item.content}</span>\
+                        </div>\
+                        <span class="delete-todo-item">&times;</span>`;
+        if (toDoList.classList.contains("empty")) {
+            toDoList.innerHTML = "";
+            toDoList.classList.remove("empty")
+        }
+        toDoList.appendChild(li)
+        li.addEventListener("click", toDoEventListener)
+        li.querySelector(".delete-todo-item").addEventListener("click", deletetodoEventListener)
+    })
+}
+
+
+
+checkToDoList();
+
+getFromLocalStorage();
