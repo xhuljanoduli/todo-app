@@ -1,6 +1,7 @@
 const toDoList = document.querySelector(".todo-list");
 let todos = [];
 
+
 function eventListeners() {
     const todos = document.querySelectorAll(".todo-item");
     const deleteTodos = document.querySelectorAll(".delete-todo-item");
@@ -29,7 +30,9 @@ eventListeners();
 function deletetodoEventListener(e) {
     e.stopPropagation();
     const toDo = this.parentElement;
+    console.log(toDo)
     const itemID = toDo.getAttribute("data-id")
+    console.log(itemID)
     todos = todos.filter(function (item) {
         return item.timeCreated != itemID;
     })
@@ -41,14 +44,13 @@ function deletetodoEventListener(e) {
 
 function toDoEventListener() {
     const itemID = this.getAttribute("data-id")
-    console.log(this)
     const itemImg = this.querySelector(".todo-image");
     if (this.classList.contains("completed")) {
         this.classList.remove("completed");
         itemImg.src = "media/circle.svg";
         todos.forEach(function (item) {
             if (item.timeCreated == itemID) {
-                console.log(item.timeCreated)
+
                 item.completed = false;
             }
         });
@@ -101,6 +103,7 @@ function newToDo() {
         const li = document.createElement('li');
         li.className = `todo-item`
         li.setAttribute("data-id", newToDo.timeCreated)
+        li.setAttribute("draggable", true)
         li.innerHTML = `<div class="todo-item-container">\
                     <div class="img-container">\
                     <img class="todo-image" src="media/circle.svg" alt="">\
@@ -113,9 +116,10 @@ function newToDo() {
             toDoList.innerHTML = "";
             toDoList.classList.remove("empty")
         }
-        toDoList.appendChild(li)
-        li.addEventListener("click", toDoEventListener)
+
+        li.addEventListener("click", toDoEventListener);
         li.querySelector(".delete-todo-item").addEventListener("click", deletetodoEventListener)
+        toDoList.appendChild(li)
         addToLocalStorage(todos);
 
     } else {
@@ -139,7 +143,7 @@ function getFromLocalStorage() {
 
 function renderTodos(todoList) {
     todoList.forEach(function (item) {
-        console.log(item)
+
         const completed = item.completed ? "completed" : null;
         const li = document.createElement('li');
         if (completed) {
@@ -150,7 +154,8 @@ function renderTodos(todoList) {
             var imgsrc = "media/circle.svg";
         }
         li.setAttribute("data-id", item.timeCreated)
-        console.log(item.timeCreated)
+        li.setAttribute("draggable", true)
+
         li.innerHTML = `<div class="todo-item-container">\
                             <div class="img-container">\
                                 <img class="todo-image" src="${imgsrc}" alt="">\
@@ -162,9 +167,11 @@ function renderTodos(todoList) {
             toDoList.innerHTML = "";
             toDoList.classList.remove("empty")
         }
-        toDoList.appendChild(li)
+
         li.addEventListener("click", toDoEventListener)
         li.querySelector(".delete-todo-item").addEventListener("click", deletetodoEventListener)
+        toDoList.appendChild(li)
+
     })
 }
 
