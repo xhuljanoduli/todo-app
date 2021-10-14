@@ -1,12 +1,12 @@
+function drag(li) {
+    li.addEventListener('dragstart', handleDragStart);
+    li.addEventListener('dragover', handleDragOver);
+    li.addEventListener('dragenter', handleDragEnter);
+    li.addEventListener('dragleave', handleDragLeave);
+    li.addEventListener('dragend', handleDragEnd);
+    li.addEventListener('drop', handleDrop);
+}
 
-items.forEach(function (item) {
-    item.addEventListener('dragstart', handleDragStart);
-    item.addEventListener('dragover', handleDragOver);
-    item.addEventListener('dragenter', handleDragEnter);
-    item.addEventListener('dragleave', handleDragLeave);
-    item.addEventListener('dragend', handleDragEnd);
-    item.addEventListener('drop', handleDrop);
-});
 
 
 function handleDragStart(e) {
@@ -14,14 +14,12 @@ function handleDragStart(e) {
     dragSrcEl = this;
     e.dataTransfer.effectAllowed = 'move';
     e.dataTransfer.setData('text/html', this.innerHTML);
+    console.log(e.dataTransfer)
 }
 
 function handleDragEnd(e) {
     this.style.opacity = '1';
-    items.forEach(function (item) {
-
-        item.classList.remove('over');
-    });
+    this.classList.remove('over');
 }
 
 function handleDrop(e) {
@@ -41,6 +39,7 @@ function handleDrop(e) {
         dragSrcEl.innerHTML = this.innerHTML;
         this.innerHTML = e.dataTransfer.getData('text/html');
     }
+
     return false;
 }
 
@@ -59,4 +58,5 @@ function handleDragEnter(e) {
 function handleDragLeave(e) {
     this.classList.remove('over');
 }
+
 
