@@ -12,6 +12,13 @@ function eventListeners() {
         deleteTodos[index].addEventListener("click", deletetodoEventListener)
     }
     todoAdd.addEventListener("click", newToDo)
+    let input = document.getElementById("input-box");
+    input.addEventListener("keyup", function (event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            document.getElementById("addButton").click();
+        }
+    });
 }
 
 eventListeners();
