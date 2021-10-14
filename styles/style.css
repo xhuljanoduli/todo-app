@@ -141,7 +141,6 @@ body {
     width: 100%;
     cursor: pointer;
     padding: 14px 10px;
-    transition: background-color 120ms ease-in-out;
 }
 
 .todo-item-container{
@@ -178,7 +177,6 @@ body {
 
 .completed .todo-item-container{
     text-decoration: line-through;
-    transition: all 300ms ease-in-out;
     text-decoration-color: rgb(145, 145, 145);
 }
 
