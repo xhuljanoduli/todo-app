@@ -1,7 +1,43 @@
 const toDoList = document.querySelector(".todo-list");
 let todos = [];
 
+toDoList.addEventListener("click", function (e) {
+    if (e.target && (e.target.classList.contains("todo-item"))) {
+        const itemID = e.target.getAttribute("data-id")
+        const itemImg = e.target.querySelector(".todo-image");
+        if (e.target.classList.contains("completed")) {
+            e.target.classList.remove("completed");
+            itemImg.src = "media/circle.svg";
+            todos.forEach(function (item) {
+                if (item.timeCreated == itemID) {
 
+                    item.completed = false;
+                }
+            });
+        } else {
+            e.target.classList.add("completed");
+            itemImg.src = "media/check.svg";
+            todos.forEach(function (item) {
+                if (item.timeCreated == itemID) {
+                    item.completed = "completed";
+                }
+            });
+        }
+        addToLocalStorage(todos);
+    }
+    if (e.target && (e.target.classList.contains("delete-todo-item"))) {
+        console.log("delete item ", e.target, " was clicked!");
+        // e.stopPropagation();
+        const toDo = e.target.parentElement;
+        const itemID = toDo.getAttribute("data-id")
+        todos = todos.filter(function (item) {
+            return item.timeCreated != itemID;
+        })
+        addToLocalStorage(todos);
+        toDo.remove()
+        emptyTodoList()
+    }
+})
 
 function getFromLocalStorage() {
     const reference = localStorage.getItem('todos');
@@ -39,8 +75,8 @@ function renderTodos(todos) {
             toDoList.innerHTML = "";
             toDoList.classList.remove("empty")
         }
-        li.addEventListener("click", toDoEventListener)
-        li.querySelector(".delete-todo-item").addEventListener("click", deletetodoEventListener)
+        // li.addEventListener("click", toDoEventListener)
+        // li.querySelector(".delete-todo-item").addEventListener("click", deletetodoEventListener)
         drag(li);
         toDoList.appendChild(li)
     })
@@ -70,8 +106,8 @@ function renderItem(item) {
         toDoList.innerHTML = "";
         toDoList.classList.remove("empty")
     }
-    li.addEventListener("click", toDoEventListener)
-    li.querySelector(".delete-todo-item").addEventListener("click", deletetodoEventListener)
+    // li.addEventListener("click", toDoEventListener)
+    // li.querySelector(".delete-todo-item").addEventListener("click", deletetodoEventListener)
     drag(li);
     toDoList.appendChild(li)
 }
