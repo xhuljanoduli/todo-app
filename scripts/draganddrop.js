@@ -14,7 +14,6 @@ function handleDragStart(e) {
     dragSrcEl = this;
     e.dataTransfer.effectAllowed = 'move';
     e.dataTransfer.setData('text/html', this.innerHTML);
-    console.log(e.dataTransfer)
 }
 
 function handleDragEnd(e) {
@@ -39,6 +38,8 @@ function handleDrop(e) {
         dragSrcEl.innerHTML = this.innerHTML;
         this.innerHTML = e.dataTransfer.getData('text/html');
     }
+    reOrderlocalStorage()
+
 
     return false;
 }
