@@ -1,6 +1,10 @@
-const toDoList = document.querySelector(".todo-list");
-let todos = [];
 
+const toDoList = document.querySelector(".todo-list");
+eventListeners();
+
+localStorage.mobile = "mobile"
+
+let todos = [];
 toDoList.addEventListener("click", function (e) {
     if (e.target && (e.target.classList.contains("delete-todo-item"))) {
         console.log("delete item ", e.target, " was clicked!");
@@ -47,16 +51,19 @@ toDoList.addEventListener("click", function (e) {
 
 function getFromLocalStorage() {
     const reference = localStorage.getItem('todos');
-    console.log()
-    if (reference != "[]") {
+    console.log(reference)
+    if (reference != "[]" && reference != null) {
         todos = JSON.parse(reference)
         renderTodos(todos);
+    } else {
+        emptyTodoList()
     }
 }
 
 
 function renderTodos(todos) {
     toDoList.innerHTML = '';
+    console.log(todos)
     todos.forEach(function (item) {
         const completed = item.completed ? "completed" : null;
         const li = document.createElement('li');
@@ -139,7 +146,7 @@ function eventListeners() {
     });
 }
 
-eventListeners();
+
 
 
 
