@@ -1,56 +1,69 @@
+
 const toDoList = document.querySelector(".todo-list");
+eventListeners();
+
+localStorage.mobile = "mobile"
+
 let todos = [];
-
 toDoList.addEventListener("click", function (e) {
-    if (e.target && (e.target.classList.contains("todo-item"))) {
-        const itemID = e.target.getAttribute("data-id")
-        const itemImg = e.target.querySelector(".todo-image");
-        if (e.target.classList.contains("completed")) {
-            e.target.classList.remove("completed");
-            itemImg.src = "media/circle.svg";
-            todos.forEach(function (item) {
-                if (item.timeCreated == itemID) {
-
-                    item.completed = false;
-                }
-            });
-        } else {
-            e.target.classList.add("completed");
-            itemImg.src = "media/check.svg";
-            todos.forEach(function (item) {
-                if (item.timeCreated == itemID) {
-                    item.completed = "completed";
-                }
-            });
-        }
-        addToLocalStorage(todos);
-    }
     if (e.target && (e.target.classList.contains("delete-todo-item"))) {
         console.log("delete item ", e.target, " was clicked!");
-        // e.stopPropagation();
+        e.stopPropagation();
         const toDo = e.target.parentElement;
         const itemID = toDo.getAttribute("data-id")
         todos = todos.filter(function (item) {
             return item.timeCreated != itemID;
         })
         addToLocalStorage(todos);
-        toDo.remove()
-        emptyTodoList()
+        toDo.classList.add("slide-out-left")
+        setTimeout(function () {
+            toDo.remove()
+            emptyTodoList()
+        }, 300);
+    } else {
+        console.log(e.target);
+        if (e.target.classList.contains("todo-item")) {
+            const itemID = e.target.getAttribute("data-id")
+            const itemImg = e.target.querySelector(".todo-image");
+            if (e.target.classList.contains("completed")) {
+                e.target.classList.remove("completed");
+                itemImg.src = "media/circle.svg";
+                todos.forEach(function (item) {
+                    if (item.timeCreated == itemID) {
+
+                        item.completed = false;
+                    }
+                });
+            } else {
+                e.target.classList.add("completed");
+                itemImg.src = "media/check.svg";
+                todos.forEach(function (item) {
+                    if (item.timeCreated == itemID) {
+                        item.completed = "completed";
+                    }
+                });
+            }
+            addToLocalStorage(todos);
+        }
+
     }
 })
 
 function getFromLocalStorage() {
     const reference = localStorage.getItem('todos');
-    console.log()
-    if (reference != "[]") {
+    console.log(reference)
+    if (reference != "[]" && reference != null) {
         todos = JSON.parse(reference)
         renderTodos(todos);
+    } else {
+        emptyTodoList()
     }
 }
 
 
 function renderTodos(todos) {
     toDoList.innerHTML = '';
+    console.log(todos)
     todos.forEach(function (item) {
         const completed = item.completed ? "completed" : null;
         const li = document.createElement('li');
@@ -133,7 +146,7 @@ function eventListeners() {
     });
 }
 
-eventListeners();
+
 
 
 
