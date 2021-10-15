@@ -2,32 +2,9 @@ const toDoList = document.querySelector(".todo-list");
 let todos = [];
 
 toDoList.addEventListener("click", function (e) {
-    if (e.target && (e.target.classList.contains("todo-item"))) {
-        const itemID = e.target.getAttribute("data-id")
-        const itemImg = e.target.querySelector(".todo-image");
-        if (e.target.classList.contains("completed")) {
-            e.target.classList.remove("completed");
-            itemImg.src = "media/circle.svg";
-            todos.forEach(function (item) {
-                if (item.timeCreated == itemID) {
-
-                    item.completed = false;
-                }
-            });
-        } else {
-            e.target.classList.add("completed");
-            itemImg.src = "media/check.svg";
-            todos.forEach(function (item) {
-                if (item.timeCreated == itemID) {
-                    item.completed = "completed";
-                }
-            });
-        }
-        addToLocalStorage(todos);
-    }
     if (e.target && (e.target.classList.contains("delete-todo-item"))) {
         console.log("delete item ", e.target, " was clicked!");
-        // e.stopPropagation();
+        e.stopPropagation();
         const toDo = e.target.parentElement;
         const itemID = toDo.getAttribute("data-id")
         todos = todos.filter(function (item) {
@@ -38,8 +15,32 @@ toDoList.addEventListener("click", function (e) {
         setTimeout(function () {
             toDo.remove()
             emptyTodoList()
-        }, 500);
+        }, 300);
+    } else {
+        console.log(e.target);
+        if (e.target.classList.contains("todo-item")) {
+            const itemID = e.target.getAttribute("data-id")
+            const itemImg = e.target.querySelector(".todo-image");
+            if (e.target.classList.contains("completed")) {
+                e.target.classList.remove("completed");
+                itemImg.src = "media/circle.svg";
+                todos.forEach(function (item) {
+                    if (item.timeCreated == itemID) {
 
+                        item.completed = false;
+                    }
+                });
+            } else {
+                e.target.classList.add("completed");
+                itemImg.src = "media/check.svg";
+                todos.forEach(function (item) {
+                    if (item.timeCreated == itemID) {
+                        item.completed = "completed";
+                    }
+                });
+            }
+            addToLocalStorage(todos);
+        }
 
     }
 })

@@ -4,6 +4,7 @@ body {
     font-family: 'Montserrat', sans-serif;
     margin: 0;
     font-size: 14px;
+
 }
 
 * {
@@ -15,15 +16,15 @@ body {
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
-    height: 100vh;
+    min-height: 100vh;
     background-color: rgb(240, 240, 240);
 }
 
 .app {
     width: 100%;
     max-width: 700px;
-    height: 100%;
-    max-height: 500px;
+    /* height: 100%; */
+    /* min-height: 500px; */
     padding: 15px;
 }
 
@@ -127,6 +128,10 @@ body {
 
 }
 
+/* .todo-item-content{
+    pointer-events: none;
+} */
+
 .placeholder-content{
     padding: 22px;
     min-height: 64px;
@@ -144,7 +149,9 @@ body {
     cursor: pointer;
     padding: 14px 10px;
     background-color: white;
-    overflow: hidden;
+    word-break: normal;
+    overflow-wrap: anywhere;
+    transition: background-color 150ms ease-in-out;
     box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.1);
 }
 
@@ -154,6 +161,7 @@ body {
 
 .todo-item-container{
     display: flex;
+    pointer-events: none;
     gap: 6px;
 }
 
@@ -206,36 +214,20 @@ body {
     animation: bounce-in-bottom 300ms both;
 }
 
+.slide-out-left {
+	animation: slide-out-left 0.3s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+}
+
 
 /**
  * ----------------------------------------
- * animation bounce-in-bottom
+ * animations
  * ----------------------------------------
  */
 
- @keyframes bounce-in-top  {
-        0% {
-        transform: translateY(-200%);
-        animation-timing-function: ease-in;
-        opacity: 0;
-      }
-      /* 50% {
-        transform: translateY(0);
-        animation-timing-function: ease-out;
-        opacity: 1;
-      }
-      75% {
-        transform: translateY(45px);
-        animation-timing-function: ease-in;
-      } */
-      100% {
-        transform: translateY(0);
-        animation-timing-function: ease-out;
-      }
- }
  @keyframes bounce-in-bottom {
     0% {
-      transform: translateY(-200%);
+      transform: translateY(-50%);
       animation-timing-function: ease-in;
       opacity: 0;
     }
@@ -255,9 +247,6 @@ body {
     
 }
 
-.slide-out-left {
-	animation: slide-out-left 0.3s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
-}
 
 @keyframes slide-out-left {
     0% {
