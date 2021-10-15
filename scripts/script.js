@@ -34,8 +34,13 @@ toDoList.addEventListener("click", function (e) {
             return item.timeCreated != itemID;
         })
         addToLocalStorage(todos);
-        toDo.remove()
-        emptyTodoList()
+        toDo.classList.add("slide-out-left")
+        setTimeout(function () {
+            toDo.remove()
+            emptyTodoList()
+        }, 500);
+
+
     }
 })
 
