@@ -7,7 +7,6 @@ localStorage.mobile = "mobile"
 let todos = [];
 toDoList.addEventListener("click", function (e) {
     if (e.target && (e.target.classList.contains("delete-todo-item"))) {
-        console.log("delete item ", e.target, " was clicked!");
         e.stopPropagation();
         const toDo = e.target.parentElement;
         const itemID = toDo.getAttribute("data-id")
@@ -21,7 +20,7 @@ toDoList.addEventListener("click", function (e) {
             emptyTodoList()
         }, 300);
     } else {
-        console.log(e.target);
+
         if (e.target.classList.contains("todo-item")) {
             const itemID = e.target.getAttribute("data-id")
             const itemImg = e.target.querySelector(".todo-image");
@@ -51,7 +50,7 @@ toDoList.addEventListener("click", function (e) {
 
 function getFromLocalStorage() {
     const reference = localStorage.getItem('todos');
-    console.log(reference)
+
     if (reference != "[]" && reference != null) {
         todos = JSON.parse(reference)
         renderTodos(todos);
@@ -63,7 +62,7 @@ function getFromLocalStorage() {
 
 function renderTodos(todos) {
     toDoList.innerHTML = '';
-    console.log(todos)
+
     todos.forEach(function (item) {
         const completed = item.completed ? "completed" : null;
         const li = document.createElement('li');
@@ -165,8 +164,6 @@ function deletetodoEventListener(e) {
 
 
 function toDoEventListener(e) {
-
-    console.log("click listner ")
     const itemID = this.getAttribute("data-id")
     const itemImg = this.querySelector(".todo-image");
     if (this.classList.contains("completed")) {
@@ -221,15 +218,25 @@ function newToDo() {
     if (input.value.trim() != "") {
         const newToDo = { content: input.value, timeCreated: Date.now(), completed: false }
         todos.push(newToDo)
-        // console.log(todos)
-        // renderTodos(todos)
         renderItem(newToDo)
         addToLocalStorage(todos);
         input.value = "";
     }
 }
 
-
+function reOrderlocalStorage() {
+    const toDoListOrder = [];
+    const todos = document.querySelectorAll(".todo-item")
+    console.log(todos)
+    todos.forEach(function (item) {
+        let todoContent = item.querySelector(".todo-item-content").innerHTML;
+        let dataId = item.getAttribute('data-id');
+        let completeds = item.classList.contains("completed") ? "completed" : false;
+        const newToDo = { content: todoContent, timeCreated: dataId, completed: completeds }
+        toDoListOrder.push(newToDo)
+    })
+    addToLocalStorage(toDoListOrder)
+}
 
 function addToLocalStorage(todos) {
     localStorage.setItem("todos", JSON.stringify(todos));
