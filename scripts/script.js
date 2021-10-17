@@ -126,15 +126,7 @@ function renderItem(item) {
 
 
 function eventListeners() {
-    const todos = document.querySelectorAll(".todo-item");
-    const deleteTodos = document.querySelectorAll(".delete-todo-item");
     const todoAdd = document.querySelector(".todo-add");
-    // for (let index = 0; index < todos.length; index++) {
-    //     todos[index].addEventListener("click", toDoEventListener)
-    // }
-    // for (let index = 0; index < deleteTodos.length; index++) {
-    //     deleteTodos[index].addEventListener("click", deletetodoEventListener)
-    // }
     todoAdd.addEventListener("click", newToDo)
     let input = document.getElementById("input-box");
     input.addEventListener("keyup", function (event) {
@@ -227,7 +219,6 @@ function newToDo() {
 function reOrderlocalStorage() {
     const toDoListOrder = [];
     const todos = document.querySelectorAll(".todo-item")
-    console.log(todos)
     todos.forEach(function (item) {
         let todoContent = item.querySelector(".todo-item-content").innerHTML;
         let dataId = item.getAttribute('data-id');

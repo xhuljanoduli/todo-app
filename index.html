@@ -6,28 +6,46 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/dropdown.css">
     <title>To-Do App</title>
 </head>
 
 <body>
-    <main class="main">
-        <h1 class="app-title">To.do-ify<span class="copyright-symbol">&#169;</span></h1>
-        <p class="app-description">Your personal planner</p>
-        <div class="app">
-            <div class="new-todo-item">
-                <input type="text" id="input-box" class="todo-input" placeholder="Add new to-do item" required>
-                <button class="btn btn--primary todo-add" id="addButton"><img src="media/add.svg" alt=""
-                        class="button-svg"></button>
+    <div class="app-container">
+        <aside class="sidebar">
+            hello
+        </aside>
+        <main class="main">
+            <h1 class="app-title">To.do-ify<span class="copyright-symbol">&#169;</span></h1>
+            <p class="app-description">Your personal planner</p>
+            <div class="app">
+                <div class="new-todo-item">
+                    <input type="text" id="input-box" class="todo-input" placeholder="Add new to-do item" required>
+                    <div class="dropdown-container">
+                        <button class="dropdown-btn category-picker">
+                            <span class="category-text">General</span>
+                            <img src="media/fi-rs-angle-small-down.svg" class="dropdown-arrow" width="20px" alt="">
+                        </button>
+                        <div id="categoryDropdownMenu" class="category-dropdown-menu dropdown-content">
+                            <a href="#" class="dropdown-item">General</a>
+                            <a href="#" class="dropdown-item">Work</a>
+                            <a href="#" class="dropdown-item">University</a>
+                        </div>
+                    </div>
+                    <button class="btn btn--primary todo-add" id="addButton">
+                        <img src="media/add.svg" alt="" class="button-svg">
+                    </button>
+                </div>
+                <ul class="todo-list"></ul>
             </div>
-            <ul class="todo-list"></ul>
-        </div>
-    </main>
-
+        </main>
+    </div>
 
 
     <script src="scripts/draganddrop.js"></script>
     <script src="scripts/DragandDropTouch.js"></script>
     <script src="scripts/script.js"></script>
+    <script src="scripts/dropdown.js"></script>
 
 
 </body>
