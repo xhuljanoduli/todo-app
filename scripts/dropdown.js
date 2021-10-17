@@ -33,7 +33,6 @@ window.onclick = function (event) {
 
 categoryDropdownMenu.addEventListener("click", function (e) {
     document.querySelector(".category-picker .category-text").innerText = e.target.innerText;
-    this.querySelector(".dropdown-arrow").classList.toggle("rotate")
 })
 
 function softShow(el) {
