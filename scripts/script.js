@@ -20,7 +20,6 @@ toDoList.addEventListener("click", function (e) {
             emptyTodoList()
         }, 300);
     } else {
-
         if (e.target.classList.contains("todo-item")) {
             const itemID = e.target.getAttribute("data-id")
             const itemImg = e.target.querySelector(".todo-image");
@@ -29,7 +28,6 @@ toDoList.addEventListener("click", function (e) {
                 itemImg.src = "media/circle.svg";
                 todos.forEach(function (item) {
                     if (item.timeCreated == itemID) {
-
                         item.completed = false;
                     }
                 });
@@ -46,7 +44,6 @@ toDoList.addEventListener("click", function (e) {
             }
             addToLocalStorage(todos);
         }
-
     }
 })
 
@@ -64,7 +61,6 @@ function getFromLocalStorage() {
 
 function renderTodos(todos) {
     toDoList.innerHTML = '';
-
     todos.forEach(function (item) {
         const completed = item.completed ? "completed" : null;
         const li = document.createElement('li');
@@ -77,7 +73,6 @@ function renderTodos(todos) {
         }
         li.setAttribute("data-id", item.timeCreated)
         li.setAttribute("draggable", true)
-
         li.innerHTML = `<div class="todo-item-container">\
                             <div class="img-container">\
                                 <img class="todo-image" src="${imgsrc}" alt="" width="20px"
@@ -90,8 +85,6 @@ function renderTodos(todos) {
             toDoList.innerHTML = "";
             toDoList.classList.remove("empty")
         }
-        // li.addEventListener("click", toDoEventListener)
-        // li.querySelector(".delete-todo-item").addEventListener("click", deletetodoEventListener)
         drag(li);
         toDoList.appendChild(li)
     })
@@ -122,8 +115,6 @@ function renderItem(item) {
         toDoList.innerHTML = "";
         toDoList.classList.remove("empty")
     }
-    // li.addEventListener("click", toDoEventListener)
-    // li.querySelector(".delete-todo-item").addEventListener("click", deletetodoEventListener)
     drag(li);
     toDoList.appendChild(li)
 }
@@ -142,10 +133,6 @@ function eventListeners() {
 }
 
 
-
-
-
-
 function deletetodoEventListener(e) {
     e.stopPropagation();
     const toDo = this.parentElement;
@@ -157,35 +144,6 @@ function deletetodoEventListener(e) {
     toDo.remove()
     emptyTodoList()
 }
-
-
-// function toDoEventListener(e) {
-//     console.log("this runs>????")
-//     const itemID = this.getAttribute("data-id")
-//     const itemImg = this.querySelector(".todo-image");
-//     if (this.classList.contains("completed")) {
-//         this.classList.remove("completed");
-//         itemImg.src = "media/circle.svg";
-//         todos.forEach(function (item) {
-//             if (item.timeCreated == itemID) {
-
-//                 item.completed = false;
-//             }
-//         });
-//     } else {
-//         this.classList.add("completed");
-//         itemImg.src = "media/check.svg";
-//         
-//         todos.forEach(function (item) {
-//             if (item.timeCreated == itemID) {
-//                 item.completed = "completed";
-//             }
-//         });
-//     }
-//     addToLocalStorage(todos);
-// }
-
-
 
 
 
