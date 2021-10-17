@@ -112,7 +112,8 @@ function renderItem(item) {
     li.setAttribute("draggable", true)
     li.innerHTML = `<div class="todo-item-container">\
                             <div class="img-container">\
-                                <img class="todo-image" src="${imgsrc}" alt="">\
+                                <img class="todo-image" src="${imgsrc}" alt="" width="20px"
+                                height="20px">\
                             </div>\
                             <span class="todo-item-content">${item.content}</span>\
                         </div>\
