@@ -36,6 +36,8 @@ toDoList.addEventListener("click", function (e) {
             } else {
                 e.target.classList.add("completed");
                 itemImg.src = "media/check.svg";
+                var audio = new Audio('media/ding.mp3');
+                audio.play();
                 todos.forEach(function (item) {
                     if (item.timeCreated == itemID) {
                         item.completed = "completed";
@@ -78,7 +80,8 @@ function renderTodos(todos) {
 
         li.innerHTML = `<div class="todo-item-container">\
                             <div class="img-container">\
-                                <img class="todo-image" src="${imgsrc}" alt="">\
+                                <img class="todo-image" src="${imgsrc}" alt="" width="20px"
+                                height="20px">\
                             </div>\
                             <span class="todo-item-content">${item.content}</span>\
                         </div>\
@@ -126,15 +129,7 @@ function renderItem(item) {
 
 
 function eventListeners() {
-    const todos = document.querySelectorAll(".todo-item");
-    const deleteTodos = document.querySelectorAll(".delete-todo-item");
     const todoAdd = document.querySelector(".todo-add");
-    // for (let index = 0; index < todos.length; index++) {
-    //     todos[index].addEventListener("click", toDoEventListener)
-    // }
-    // for (let index = 0; index < deleteTodos.length; index++) {
-    //     deleteTodos[index].addEventListener("click", deletetodoEventListener)
-    // }
     todoAdd.addEventListener("click", newToDo)
     let input = document.getElementById("input-box");
     input.addEventListener("keyup", function (event) {
@@ -163,29 +158,31 @@ function deletetodoEventListener(e) {
 }
 
 
-function toDoEventListener(e) {
-    const itemID = this.getAttribute("data-id")
-    const itemImg = this.querySelector(".todo-image");
-    if (this.classList.contains("completed")) {
-        this.classList.remove("completed");
-        itemImg.src = "media/circle.svg";
-        todos.forEach(function (item) {
-            if (item.timeCreated == itemID) {
+// function toDoEventListener(e) {
+//     console.log("this runs>????")
+//     const itemID = this.getAttribute("data-id")
+//     const itemImg = this.querySelector(".todo-image");
+//     if (this.classList.contains("completed")) {
+//         this.classList.remove("completed");
+//         itemImg.src = "media/circle.svg";
+//         todos.forEach(function (item) {
+//             if (item.timeCreated == itemID) {
 
-                item.completed = false;
-            }
-        });
-    } else {
-        this.classList.add("completed");
-        itemImg.src = "media/check.svg";
-        todos.forEach(function (item) {
-            if (item.timeCreated == itemID) {
-                item.completed = "completed";
-            }
-        });
-    }
-    addToLocalStorage(todos);
-}
+//                 item.completed = false;
+//             }
+//         });
+//     } else {
+//         this.classList.add("completed");
+//         itemImg.src = "media/check.svg";
+//         
+//         todos.forEach(function (item) {
+//             if (item.timeCreated == itemID) {
+//                 item.completed = "completed";
+//             }
+//         });
+//     }
+//     addToLocalStorage(todos);
+// }
 
 
 
@@ -227,7 +224,6 @@ function newToDo() {
 function reOrderlocalStorage() {
     const toDoListOrder = [];
     const todos = document.querySelectorAll(".todo-item")
-    console.log(todos)
     todos.forEach(function (item) {
         let todoContent = item.querySelector(".todo-item-content").innerHTML;
         let dataId = item.getAttribute('data-id');
