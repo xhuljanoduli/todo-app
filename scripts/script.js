@@ -236,7 +236,6 @@ function reOrderlocalStorage() {
 
 function addToLocalStorage(todos) {
     localStorage.setItem("todos", JSON.stringify(todos));
-    // renderTodos(todos);
 }
 
 getFromLocalStorage();
