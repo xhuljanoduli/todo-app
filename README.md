@@ -1,5 +1,6 @@
 # To.do-ify
  Simple aesthetic to-do app
+ See live dulixhuljano.eu/todoify
  
  Save to-do's into local storage
  
