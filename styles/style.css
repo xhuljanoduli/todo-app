@@ -13,6 +13,10 @@ body {
     font-size: 14px;
     background-color: rgb(240, 240, 240);
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 * {
@@ -27,7 +31,6 @@ body {
     grid-template-columns: 1fr 3fr;
     padding: 0px;
     justify-items: center;
-    min-height: 100%;
 }
 
 .top{
@@ -51,8 +54,7 @@ body {
     flex-direction: column;
     margin: 15px;
     margin-bottom: 120px;
-    min-height: 600px;
-    max-height: 700px;
+    min-height: 400px;
     overflow-y: auto;
     width: 300px;
     border-radius: 4px;
@@ -102,11 +104,14 @@ body {
     width: 100%;
     display: flex;
     gap: 10px;
+    flex-wrap: wrap;
 }
 
 .todo-input {
     max-width: 100%;
     width: 100%;
+    /* min-width: 300px; */
+    max-width: 396px;
     margin: 0;
     padding: 0;
     border: none;
@@ -308,7 +313,7 @@ body {
     padding: 5px 20px;
     background-color: #fff;
     border-radius: 4px;
-    align-self: end;
+    margin-top: auto;
 }
 
 .link{
