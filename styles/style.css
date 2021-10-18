@@ -318,11 +318,11 @@ body {
 
 .link{
     display: inline-flex;
-    color: rgb(0, 128, 255);
+    color: rgb(0, 89, 255);
 }
 
 .link:hover{
-    color: rgb(0, 99, 197);
+    color: rgb(0, 62, 197);
 }
 .link {
     text-decoration: none;
