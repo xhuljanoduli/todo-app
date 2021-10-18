@@ -203,15 +203,16 @@ body {
 
 .todo-item-container{
     display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     pointer-events: none;
-    gap: 6px;
 }
 
 .todo-item-outter{
     pointer-events: none;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    gap: 10px;
 }
 
 
@@ -231,7 +232,7 @@ body {
     pointer-events: none;
     margin-top: 5px;
     font-size: 12px;
-    padding: 5px 6px;
+    padding: 4px 6px;
     background-color: rgb(235, 235, 235);
     color: rgb(39, 39, 39);
     border-radius: 5vw;
@@ -252,7 +253,7 @@ body {
 
 }
 
-.completed .todo-item-container{
+.completed .todo-item-content{
     text-decoration: line-through;
     text-decoration-color: rgb(145, 145, 145);
 }

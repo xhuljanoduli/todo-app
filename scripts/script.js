@@ -73,17 +73,16 @@ function renderTodos(todos) {
         }
         li.setAttribute("data-id", item.timeCreated)
         li.setAttribute("draggable", true)
-        li.innerHTML = `<div class="todo-item-outter">\
-                            <div class="todo-item-container">\
-                                <div class="img-container">\
-                                     <img class="todo-image" src="${imgsrc}" alt="" width="20px"
-                                         height="20px">\
-                                </div>\
-                                <span class="todo-item-content">${item.content}</span>\
-                            </div>\
-                            <span class="item-category">${item.category}</span>\
-                        </div>\
-                        <span class="delete-todo-item">&times;</span>`;
+        li.innerHTML = `<div class="todo-item-outter">
+                            <div class="img-container">
+                                <img class="todo-image" src="${imgsrc}" alt="" width="20px" height="20px">
+                            </div>
+                            <div class="todo-item-container">
+                                <span class="todo-item-content">${item.content}</span>
+                                <span class="item-category">${item.category}</span>
+                            </div>
+                        </div>
+                        <span class="delete-todo-item">×</span>`
         if (toDoList.classList.contains("empty")) {
             toDoList.innerHTML = "";
             toDoList.classList.remove("empty")
@@ -106,17 +105,16 @@ function renderItem(item) {
     }
     li.setAttribute("data-id", item.timeCreated)
     li.setAttribute("draggable", true)
-    li.innerHTML = `<div class="todo-item-outter">\
-                        <div class="todo-item-container">\
-                            <div class="img-container">\
-                                <img class="todo-image" src="${imgsrc}" alt="" width="20px"
-                                    height="20px">\
-                            </div>\
-                            <span class="todo-item-content">${item.content}</span>\
-                        </div>\
-                        <span class="item-category">${item.category}</span>
-                    </div>\
-                    <span class="delete-todo-item">&times;</span>`;
+    li.innerHTML = `<div class="todo-item-outter">
+                        <div class="img-container">
+                            <img class="todo-image" src="${imgsrc}" alt="" width="20px" height="20px">
+                        </div>
+                        <div class="todo-item-container">
+                            <span class="todo-item-content">${item.content}</span>
+                            <span class="item-category">${item.category}</span>
+                        </div>
+                    </div>
+                    <span class="delete-todo-item">×</span>`
     if (toDoList.classList.contains("empty")) {
         toDoList.innerHTML = "";
         toDoList.classList.remove("empty")
