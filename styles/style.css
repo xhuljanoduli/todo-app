@@ -259,8 +259,22 @@ body {
     grid-column: 1/-1;
     position: absolute;
     bottom: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 }
 
+.link{
+    color: rgb(0, 128, 255);
+}
+
+.link:hover{
+    color: rgb(0, 99, 197);
+}
+.link {
+    text-decoration: none;
+}
 
 @media screen and (max-width: 750px) {
     .app-container {
