@@ -25,7 +25,43 @@
             <p class="app-description">Your personal planner</p>
         </div>
         <aside class="sidebar">
+            <div class="user-profile">
+                <div class="user-avatar">
+                    <img src="media/avatar.png" class="avatar-img" width="40px" height="40px" alt="">
+                </div>
+                <div class="user-info">Xhuljano Duli</div>
+            </div>
+            <hr class="divider">
             <div class="categories-editor">
+
+                <div class="general-category category">
+                    <div>
+                        <span class="category-icon">🕓</span>
+                        <span class="category-name">General</span>
+                    </div>
+                    <span class="number-of-items">5</span>
+                </div>
+                <div class="work-category category">
+                    <div>
+                        <span class="category-icon">💼</span>
+                        <span class="category-name">Work</span>
+                    </div>
+                    <span class="number-of-items">5</span>
+                </div>
+                <div class="university-category category selected-category">
+                    <div>
+                        <span class="category-icon">🎓</span>
+                        <span class="category-name">University</span>
+                    </div>
+                    <span class="number-of-items">5</span>
+                </div>
+                <div class="projects-category category">
+                    <div>
+                        <span class="category-icon">🔨</span>
+                        <span class="category-name">Projects</span>
+                    </div>
+                    <span class="number-of-items">5</span>
+                </div>
 
             </div>
         </aside>
@@ -44,6 +80,7 @@
                             <span class="dropdown-item">🕓 General</span>
                             <span class="dropdown-item">💼 Work</span>
                             <span class="dropdown-item">🎓 University</span>
+                            <span class="dropdown-item">🔨 Projects</span>
                         </div>
                     </div>
                     <button class="btn btn--primary todo-add" id="addButton" aria-label="Add">
