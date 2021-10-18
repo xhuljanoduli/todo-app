@@ -63,6 +63,18 @@ body {
     margin-top: 1rem;
     margin-bottom: 0.3125rem;
     letter-spacing: .05em;
+    position: relative;
+}
+
+.beta-tag{
+    color: white;
+    background-color: rgb(212, 20, 20);
+    border-radius: 6px;
+    font-size: 12px;
+    padding: 2px 3px;
+    position: absolute;
+    top: 8px;
+    right: -40px;
 }
 
 .copyright-symbol {
@@ -243,6 +255,15 @@ body {
 	animation: slide-out-left 0.3s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
 }
 
+
+@media screen and (max-width: 750px) {
+    .app-container {
+        grid-template-columns: 1fr;
+    }
+    .sidebar {
+        display: none;
+    }
+  }
 
 /**
  * ----------------------------------------
