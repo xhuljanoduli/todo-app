@@ -1,7 +1,7 @@
 # To.do-ify
  Simple aesthetic to-do app
  
- See live dulixhuljano.eu/todoify
+ See live <a href="dulixhuljano.eu/todoify">To.do-ify</a>
  
  Save to-do's into local storage
  
