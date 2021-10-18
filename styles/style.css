@@ -255,6 +255,12 @@ body {
 	animation: slide-out-left 0.3s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
 }
 
+.footer{
+    grid-column: 1/-1;
+    position: absolute;
+    bottom: 5px;
+}
+
 
 @media screen and (max-width: 750px) {
     .app-container {
