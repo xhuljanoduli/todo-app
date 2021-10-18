@@ -1,12 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;700&display=swap');
 
+
+html {
+    height: 100%;
+}
+
 body {
     font-family: 'Montserrat', sans-serif;
     margin: 0;
     font-size: 14px;
     background-color: rgb(240, 240, 240);
-    
-
+    height: 100%;
 }
 
 * {
@@ -21,6 +25,7 @@ body {
     grid-template-columns: 1fr 3fr;
     padding: 0px;
     justify-items: center;
+    min-height: 100%;
 }
 
 .top{
@@ -184,6 +189,7 @@ body {
     width: 100%;
     cursor: pointer;
     padding: 14px 10px;
+    padding-bottom: 7px;
     background-color: white;
     word-break: normal;
     overflow-wrap: anywhere;
@@ -201,6 +207,13 @@ body {
     gap: 6px;
 }
 
+.todo-item-outter{
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
 
 .img-container{
     width: 20px;
@@ -212,6 +225,17 @@ body {
 
 .todo-item:hover {
     background-color: rgb(240, 240, 240);
+}
+
+.item-category{
+    pointer-events: none;
+    margin-top: 5px;
+    font-size: 12px;
+    padding: 5px 6px;
+    background-color: rgb(235, 235, 235);
+    color: rgb(39, 39, 39);
+    border-radius: 5vw;
+    flex-grow: 0;
 }
 
 .delete-todo-item {
@@ -231,6 +255,11 @@ body {
 .completed .todo-item-container{
     text-decoration: line-through;
     text-decoration-color: rgb(145, 145, 145);
+}
+
+.todo-item-content{
+    display: block;
+    width: 100%;
 }
 
 .completed .todo-item-content {
@@ -257,15 +286,20 @@ body {
 
 .footer{
     grid-column: 1/-1;
-    position: absolute;
-    bottom: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
+    min-width: 300px;
     gap: 10px;
+    padding: 5px 20px;
+    background-color: #fff;
+    border-radius: 2vw;
+    margin-bottom: 5px;
+    align-self: end;
 }
 
 .link{
+    display: inline-flex;
     color: rgb(0, 128, 255);
 }
 

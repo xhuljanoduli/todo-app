@@ -25,7 +25,9 @@
             <p class="app-description">Your personal planner</p>
         </div>
         <aside class="sidebar">
-            Work in progress
+            <div class="categories-editor">
+
+            </div>
         </aside>
         <main class="main">
 
@@ -34,14 +36,14 @@
                     <input type="text" id="input-box" class="todo-input" placeholder="Add new to-do item" required>
                     <div class="dropdown-container">
                         <button class="dropdown-btn category-picker">
-                            <span class="category-text">General</span>
+                            <span class="category-text">✅ General</span>
                             <img src="media/fi-rs-angle-small-down.svg" class="dropdown-arrow" width="20px"
                                 height="20px" alt="">
                         </button>
                         <div id="categoryDropdownMenu" class="category-dropdown-menu dropdown-content">
-                            <a href="#" class="dropdown-item">General</a>
-                            <a href="#" class="dropdown-item">Work</a>
-                            <a href="#" class="dropdown-item">University</a>
+                            <span class="dropdown-item">✅ General</span>
+                            <span class="dropdown-item">💼 Work</span>
+                            <span class="dropdown-item">🎓 University</span>
                         </div>
                     </div>
                     <button class="btn btn--primary todo-add" id="addButton" aria-label="Add">
@@ -49,11 +51,24 @@
                     </button>
                 </div>
                 <ul class="todo-list">
+                    <li class="todo-item" data-id="1634578219645" draggable="true">
+                        <div class="todo-item-outter">
+                            <div class="todo-item-container">
+                                <div class="img-container">
+                                    <img class="todo-image" src="media/circle.svg" alt="" width="20px" height="20px">
+                                </div>
+                                <span class="todo-item-content">ok</span>
+                            </div>
+                            <span class="item-category">💼 Work</span>
+                        </div>
+                        <span class="delete-todo-item">×</span>
+                    </li>
                 </ul>
             </div>
         </main>
         <footer class="footer">
-            <small>Made with ❤️ by Xhuljano Duli</small>
+            <small>Made with ❤️ by <a href="https://www.dulixhuljano.eu" title="Xhuljano Duli Personal Website link"
+                    class="link">Xhuljano Duli</a></small>
             <a href="https://github.com/xhuljanoduli/todo-app" title="Github Repository Link" class="link"><img
                     src="media/github.svg" width="20px" height="20px" alt=""></a>
             <a href="mailto:dulixhuljano@gmail.com" class="link">

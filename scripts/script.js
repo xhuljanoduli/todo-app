@@ -73,12 +73,15 @@ function renderTodos(todos) {
         }
         li.setAttribute("data-id", item.timeCreated)
         li.setAttribute("draggable", true)
-        li.innerHTML = `<div class="todo-item-container">\
-                            <div class="img-container">\
-                                <img class="todo-image" src="${imgsrc}" alt="" width="20px"
-                                height="20px">\
+        li.innerHTML = `<div class="todo-item-outter">\
+                            <div class="todo-item-container">\
+                                <div class="img-container">\
+                                     <img class="todo-image" src="${imgsrc}" alt="" width="20px"
+                                         height="20px">\
+                                </div>\
+                                <span class="todo-item-content">${item.content}</span>\
                             </div>\
-                            <span class="todo-item-content">${item.content}</span>\
+                            <span class="item-category">${item.category}</span>\
                         </div>\
                         <span class="delete-todo-item">&times;</span>`;
         if (toDoList.classList.contains("empty")) {
@@ -103,14 +106,17 @@ function renderItem(item) {
     }
     li.setAttribute("data-id", item.timeCreated)
     li.setAttribute("draggable", true)
-    li.innerHTML = `<div class="todo-item-container">\
+    li.innerHTML = `<div class="todo-item-outter">\
+                        <div class="todo-item-container">\
                             <div class="img-container">\
                                 <img class="todo-image" src="${imgsrc}" alt="" width="20px"
-                                height="20px">\
+                                    height="20px">\
                             </div>\
                             <span class="todo-item-content">${item.content}</span>\
                         </div>\
-                        <span class="delete-todo-item">&times;</span>`;
+                        <span class="item-category">${item.category}</span>
+                    </div>\
+                    <span class="delete-todo-item">&times;</span>`;
     if (toDoList.classList.contains("empty")) {
         toDoList.innerHTML = "";
         toDoList.classList.remove("empty")
@@ -171,8 +177,9 @@ function checkToDoList() {
 
 function newToDo() {
     const input = document.querySelector(".todo-input")
+    const category = document.querySelector(".category-text").innerText.trim();
     if (input.value.trim() != "") {
-        const newToDo = { content: input.value, timeCreated: Date.now(), completed: false }
+        const newToDo = { content: input.value, timeCreated: Date.now(), completed: false, category: category }
         todos.push(newToDo)
         renderItem(newToDo)
         addToLocalStorage(todos);
@@ -186,8 +193,9 @@ function reOrderlocalStorage() {
     todos.forEach(function (item) {
         let todoContent = item.querySelector(".todo-item-content").innerHTML;
         let dataId = item.getAttribute('data-id');
-        let completeds = item.classList.contains("completed") ? "completed" : false;
-        const newToDo = { content: todoContent, timeCreated: dataId, completed: completeds }
+        let completedZ = item.classList.contains("completed") ? "completed" : false;
+        let categoryZ = item.querySelector(".item-category").innerText.trim();
+        const newToDo = { content: todoContent, timeCreated: dataId, completed: completedZ, category: categoryZ }
         toDoListOrder.push(newToDo)
     })
     addToLocalStorage(toDoListOrder)
