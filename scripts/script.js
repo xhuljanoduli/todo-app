@@ -4,6 +4,12 @@ eventListeners();
 
 localStorage.mobile = "mobile"
 
+
+
+
+let categories = document.querySelectorAll(".sidebar .category")
+
+
 let todos = [];
 toDoList.addEventListener("click", function (e) {
     if (e.target && (e.target.classList.contains("delete-todo-item"))) {

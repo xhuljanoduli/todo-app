@@ -16,7 +16,7 @@ dropdownbtns.forEach(dropdownbtn => {
 
 
 window.onclick = function (event) {
-    console.log(event.target)
+
     if (!event.target.matches('.dropdown-btn')) {
         var dropdowns = document.getElementsByClassName("dropdown-content");
         for (let i = 0; i < dropdowns.length; i++) {
