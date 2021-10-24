@@ -31,6 +31,32 @@ body {
     grid-template-columns: 1fr 3fr;
     padding: 0px;
     justify-items: center;
+    align-items: start;
+}
+
+.category-name.editable{
+    pointer-events: all;
+    cursor: text;
+    word-break: break-all;
+
+}
+
+.category-name.editable:focus{
+    background-color: rgb(59, 59, 59);
+    color: white;
+}
+
+.categories-editor .editable{
+    user-select: none;
+}
+
+.editable{
+    border: 1px dotted grey;
+    cursor: text;
+}
+
+.editable:focus{
+    outline: none;
 }
 
 .top{
@@ -340,6 +366,16 @@ body {
     padding: 10px 10px;
     display: flex;
     justify-content: space-between;
+}
+
+.new-category{
+    display: flex;
+    flex-direction: column;
+    padding: 10px 10px;
+}
+.new-category-link{
+    color: rgb(0, 128, 255);
+    text-decoration: none;
 }
 
 .category-icon, .category-name, .number-of-items, .icon-title-container{
