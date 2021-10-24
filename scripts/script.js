@@ -7,7 +7,30 @@ localStorage.mobile = "mobile"
 
 
 
-let categories = document.querySelectorAll(".sidebar .category")
+let categories = document.querySelector(".categories-editor")
+
+categories.addEventListener("click", function (e) {
+    if (e.target.classList.contains("selected-category")) {
+        e.target.classList.remove("selected-category")
+        getFromLocalStorage();
+    } else {
+        e.target.classList.add("selected-category")
+        Array.from(e.target.parentElement.children).forEach(item => {
+            if (item != e.target) {
+                item.classList.remove("selected-category")
+            }
+        })
+        toDoList.innerHTML = '';
+        todos.forEach(todo => {
+            if (e.target.getAttribute("category") == todo.category) {
+                renderItem(todo)
+            }
+        })
+        noToDoPlaceholder(e.target.getAttribute("category"))
+    }
+
+
+})
 
 
 let todos = [];
@@ -23,7 +46,16 @@ toDoList.addEventListener("click", function (e) {
         toDo.classList.add("slide-out-left")
         setTimeout(function () {
             toDo.remove()
-            emptyTodoList()
+            console.log("category selected")
+            if (document.querySelector(".selected-category")) {
+                console.log("category selected")
+                let cat = document.querySelector(".selected-category").getAttribute("category");
+
+                noToDoPlaceholder(cat)
+            } else {
+                emptyTodoList()
+            }
+
         }, 300);
     } else {
         if (e.target.classList.contains("todo-item")) {
@@ -99,6 +131,15 @@ function renderTodos(todos) {
 }
 
 
+
+function noToDoPlaceholder(category) {
+    if (toDoList.innerHTML.trim() == "") {
+        toDoList.innerHTML = `<div class='placeholder-content'>You have no tasks in ${category}!</div>`
+        toDoList.classList.add("empty")
+    }
+}
+
+
 function renderItem(item) {
     const completed = item.completed ? "completed" : null;
     const li = document.createElement('li');
@@ -145,6 +186,7 @@ function eventListeners() {
 
 function deletetodoEventListener(e) {
     e.stopPropagation();
+    console.log("category selected")
     const toDo = this.parentElement;
     const itemID = toDo.getAttribute("data-id")
     todos = todos.filter(function (item) {
@@ -152,13 +194,21 @@ function deletetodoEventListener(e) {
     })
     addToLocalStorage(todos);
     toDo.remove()
+    console.log("category selected")
+    if (document.querySelector(".selected-category")) {
+        console.log("category selected")
+        let categoryIcon = querySelector(".selected-category .icon-title-container")
+        let categoryName = querySelector(".selected-category .category-name")
+        let cat = categoryIcon + " " + categoryName
+        noToDoPlaceholder(cat)
+    }
     emptyTodoList()
 }
 
 
 
 function emptyTodoList() {
-    if (toDoList.innerHTML.trim() == "") {
+    if (toDoList.innerHTML.trim() == "" || toDoList.classList.contains("empty")) {
         toDoList.innerHTML = "<div class='placeholder-content'>You have no tasks for today!</div>"
         toDoList.classList.add("empty")
         return 1;
@@ -181,7 +231,7 @@ function checkToDoList() {
 
 function newToDo() {
     const input = document.querySelector(".todo-input")
-    const category = document.querySelector(".category-text").innerText.trim();
+    const category = document.querySelector(".selected-category").getAttribute("category").trim();
     if (input.value.trim() != "") {
         const newToDo = { content: input.value, timeCreated: Date.now(), completed: false, category: category }
         todos.push(newToDo)
