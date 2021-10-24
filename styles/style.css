@@ -353,7 +353,8 @@ body {
 }
 
 .category.selected-category{
-    background-color: rgb(233, 243, 250);
+    background-color: rgb(238, 238, 238);
+    font-weight: 700;
 }
 
 .user-profile{

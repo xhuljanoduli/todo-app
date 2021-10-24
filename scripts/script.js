@@ -55,6 +55,7 @@ toDoList.addEventListener("click", function (e) {
             }
 
         }, 300);
+        todoCounters()
     } else {
         if (e.target.classList.contains("todo-item")) {
             const itemID = e.target.getAttribute("data-id")
@@ -79,7 +80,9 @@ toDoList.addEventListener("click", function (e) {
                 });
             }
             addToLocalStorage(todos);
+
         }
+
     }
 })
 
@@ -93,6 +96,33 @@ function getFromLocalStorage() {
         emptyTodoList()
     }
 }
+
+
+
+function todoCounters() {
+    let counters = {};
+    todos.forEach(item => {
+        if (counters[item.category]) {
+            counters[item.category] += 1;
+        } else {
+            counters[item.category] = 1;
+        }
+
+
+
+
+    })
+    const categories = document.querySelectorAll(".category")
+    categories.forEach(category => {
+        if (counters[`${category.getAttribute("category")}`]) {
+            category.querySelector(".number-of-items").innerHTML = counters[`${category.getAttribute("category")}`]
+        } else {
+            category.querySelector(".number-of-items").innerHTML = 0;
+        }
+
+    })
+}
+
 
 
 function renderTodos(todos) {
@@ -166,6 +196,7 @@ function renderItem(item) {
     }
     drag(li);
     toDoList.appendChild(li)
+    todoCounters()
 }
 
 
@@ -270,5 +301,5 @@ getFromLocalStorage();
 
 checkToDoList();
 
-
+todoCounters();
 
