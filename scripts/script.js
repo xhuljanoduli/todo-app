@@ -46,9 +46,7 @@ toDoList.addEventListener("click", function (e) {
         toDo.classList.add("slide-out-left")
         setTimeout(function () {
             toDo.remove()
-            console.log("category selected")
             if (document.querySelector(".selected-category")) {
-                console.log("category selected")
                 let cat = document.querySelector(".selected-category").getAttribute("category");
 
                 noToDoPlaceholder(cat)
@@ -186,7 +184,7 @@ function eventListeners() {
 
 function deletetodoEventListener(e) {
     e.stopPropagation();
-    console.log("category selected")
+
     const toDo = this.parentElement;
     const itemID = toDo.getAttribute("data-id")
     todos = todos.filter(function (item) {
@@ -194,9 +192,9 @@ function deletetodoEventListener(e) {
     })
     addToLocalStorage(todos);
     toDo.remove()
-    console.log("category selected")
+
     if (document.querySelector(".selected-category")) {
-        console.log("category selected")
+
         let categoryIcon = querySelector(".selected-category .icon-title-container")
         let categoryName = querySelector(".selected-category .category-name")
         let cat = categoryIcon + " " + categoryName
@@ -226,12 +224,21 @@ function checkToDoList() {
     }
 }
 
-
+function isCategorySelected() {
+    if (document.querySelector(".selected-category")) {
+        const category = document.querySelector(".selected-category").getAttribute("category").trim();
+        return category;
+    } else {
+        const category = "🕓 General"
+        return category;
+    }
+}
 
 
 function newToDo() {
     const input = document.querySelector(".todo-input")
-    const category = document.querySelector(".selected-category").getAttribute("category").trim();
+    const category = isCategorySelected();
+
     if (input.value.trim() != "") {
         const newToDo = { content: input.value, timeCreated: Date.now(), completed: false, category: category }
         todos.push(newToDo)
