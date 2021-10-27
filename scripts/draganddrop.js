@@ -38,7 +38,7 @@ function handleDrop(e) {
         dragSrcEl.innerHTML = this.innerHTML;
         this.innerHTML = e.dataTransfer.getData('text/html');
     }
-    console.log("dragsource", dragSrcEl, "this", this)
+
 
 
     return false;

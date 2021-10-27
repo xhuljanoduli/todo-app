@@ -4,80 +4,22 @@ eventListeners();
 
 
 
-let categories = document.querySelector(".categories-editor")
-
-
-const newCategoryBtn = document.querySelector(".new-category-link");
-
-newCategoryBtn.addEventListener("click", function (e) {
-    e.preventDefault()
-    createNewCategory()
-})
 
 
 
 
-function createNewCategory() {
-    const category = document.createElement('div');
-    category.className = "category"
-    category.setAttribute("category", '🔨 Untitled Category')
-    category.innerHTML = `
-                    <div class="icon-title-container">
-                        <span class="category-icon">🔨</span>
-                        <span class="category-name"><input type="text" class="category-name-input" onfocus="this.select();" value="Untitled Category" placeholder="Type a category name"></span>
-                    </div>
-                    <span class="number-of-items">0</span>
-                </div>`
-    document.querySelector(".categories-editor").appendChild(category)
-    const newCat = document.querySelector(".category[category='🔨 Untitled Category'] .category-name");
-    const inputBox = document.querySelector(".category-name-input")
-    inputBox.focus();
-    // select(inputBox);
-    inputBox.addEventListener("keyup", function (event) {
-        if (event.key === "Enter") {
-            let catValue = document.querySelector(".category-name-input").value
-            event.preventDefault();
-            newCat.innerHTML = catValue;
-            category.setAttribute("category", `🔨 ${catValue}`)
-        }
-    });
 
 
-}
-
-InputEvent
-
-function select(id) {
-    window.getSelection()
-        .selectAllChildren(
-            id
-        );
-}
+// function select(id) {
+//     window.getSelection()
+//         .selectAllChildren(
+//             id
+//         );
+// }
 
 
 
-categories.addEventListener("click", function (e) {
-    if (e.target.classList.contains("selected-category")) {
-        e.target.classList.remove("selected-category")
-        getFromLocalStorage();
-    } else {
-        e.target.classList.add("selected-category")
-        Array.from(e.target.parentElement.children).forEach(item => {
-            if (item != e.target) {
-                item.classList.remove("selected-category")
-            }
-        })
-        toDoList.innerHTML = '';
-        todos.forEach(todo => {
-            if (e.target.getAttribute("category") == todo.category) {
-                renderItem(todo)
-            }
-        })
-        noToDoPlaceholder(e.target.getAttribute("category"))
-    }
 
-
-})
 
 
 let todos = [];
@@ -102,7 +44,7 @@ toDoList.addEventListener("click", function (e) {
             }
 
         }, 300);
-        todoCounters()
+        todoCounters();
     } else {
         if (e.target.classList.contains("todo-item")) {
             const itemID = e.target.getAttribute("data-id")
@@ -154,10 +96,6 @@ function todoCounters() {
         } else {
             counters[item.category] = 1;
         }
-
-
-
-
     })
     const categories = document.querySelectorAll(".category")
     categories.forEach(category => {
@@ -209,7 +147,7 @@ function renderTodos(todos) {
 
 function noToDoPlaceholder(category) {
     if (toDoList.innerHTML.trim() == "") {
-        toDoList.innerHTML = `<div class='placeholder-content'>You have no tasks in ${category}!</div>`
+        toDoList.innerHTML = `<div class='placeholder-content'>You have no tasks in the "${category}" category.</div>`
         toDoList.classList.add("empty")
     }
 }
