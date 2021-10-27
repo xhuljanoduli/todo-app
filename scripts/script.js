@@ -153,6 +153,41 @@ function noToDoPlaceholder(category) {
 }
 
 
+function renderItemAnimate(item) {
+    const completed = item.completed ? "completed" : null;
+    const li = document.createElement('li');
+    if (completed) {
+        li.className = `todo-item todo-animate completed`
+        var imgsrc = "media/check.svg";
+    } else {
+        li.className = `todo-item todo-animate`
+        var imgsrc = "media/circle.svg";
+    }
+    li.setAttribute("data-id", item.timeCreated)
+    li.setAttribute("draggable", true)
+    li.innerHTML = `<div class="todo-item-outter">
+                        <div class="img-container">
+                            <img class="todo-image" src="${imgsrc}" alt="" width="20px" height="20px">
+                        </div>
+                        <div class="todo-item-container">
+                            <span class="todo-item-content">${item.content}</span>
+                            <span class="item-category">${item.category}</span>
+                        </div>
+                    </div>
+                    <span class="delete-todo-item">×</span>`
+    if (toDoList.classList.contains("empty")) {
+        toDoList.innerHTML = "";
+        toDoList.classList.remove("empty")
+    }
+    drag(li);
+    toDoList.appendChild(li);
+    setTimeout(() => {
+        li.classList.remove("todo-animate")
+    }, 500);
+
+    todoCounters()
+}
+
 function renderItem(item) {
     const completed = item.completed ? "completed" : null;
     const li = document.createElement('li');
@@ -180,7 +215,9 @@ function renderItem(item) {
         toDoList.classList.remove("empty")
     }
     drag(li);
-    toDoList.appendChild(li)
+    toDoList.appendChild(li);
+
+
     todoCounters()
 }
 
@@ -258,7 +295,7 @@ function newToDo() {
     if (input.value.trim() != "") {
         const newToDo = { content: input.value, timeCreated: Date.now(), completed: false, category: category }
         todos.push(newToDo)
-        renderItem(newToDo)
+        renderItemAnimate(newToDo)
         addToLocalStorage(todos);
         input.value = "";
     }

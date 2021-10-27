@@ -320,7 +320,7 @@ body {
     z-index: 2;
 }
 
-.todo-item, .placeholder-content {
+.todo-animate, .placeholder-contents {
     animation: bounce-in-bottom 300ms both;
 }
 
