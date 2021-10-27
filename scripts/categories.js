@@ -8,7 +8,7 @@ let categories = document.querySelector(".categories-editor")
 
 let categoryArray = [];
 
-localStorage.removeItem("categories")
+// localStorage.removeItem("categories")
 
 function createNewCategory() {
     const category = document.createElement('div');
@@ -30,11 +30,11 @@ function createNewCategory() {
         if (event.key === "Enter") {
 
             let catValue = document.querySelector(".category-name-input").value;
-            let catValueClean = (document.querySelector(".category-name-input").value).replace(/ /g, "-");
+
             event.preventDefault();
             newCat.innerHTML = catValue;
             category.classList.remove("unnamed-category");
-            category.setAttribute("category", `🔨-${catValueClean}`)
+            category.setAttribute("category", `🔨 ${catValue}`)
             let newCategoryObject = { category: catValue, categoryIcon: '🔨' }
             categoryArray.push(newCategoryObject)
             localStorage.setItem("categories", JSON.stringify(categoryArray));
@@ -49,12 +49,12 @@ window.onclick = function (e) {
     if (document.querySelector(".unnamed-category")) {
         if (!(e.target == document.querySelector(".unnamed-category")) && !(e.target == document.querySelector(".new-category")) && !(e.target == document.querySelector(".new-category-link"))) {
             let catValue = document.querySelector(".category-name-input").value;
-            let catValueClean = (document.querySelector(".category-name-input").value).replace(/ /g, "-");
+
             let newCat = document.querySelector(".unnamed-category .category-name");
             newCat.innerHTML = catValue;
             let category = document.querySelector(".unnamed-category")
             category.classList.remove("unnamed-category");
-            category.setAttribute("category", `🔨-${catValueClean}`)
+            category.setAttribute("category", `🔨 ${catValue}`)
             let newCategoryObject = { category: catValue, categoryIcon: '🔨' }
             categoryArray.push(newCategoryObject)
             localStorage.setItem("categories", JSON.stringify(categoryArray));
@@ -130,8 +130,8 @@ function renderAllCategories(categories) {
     categoryContainer.innerHTML = "";
     categories.forEach(category => {
         const categoryDiv = document.createElement('div');
-        let categoryNoSpaces = (category.category).replace(/ /g, "-");
-        categoryDiv.setAttribute("category", `${category.categoryIcon} ${categoryNoSpaces}`)
+
+        categoryDiv.setAttribute("category", `${category.categoryIcon} ${category.category}`)
         categoryDiv.className = `category`
         categoryDiv.innerHTML = ` <div class="icon-title-container">
                             <span class="category-icon">${category.categoryIcon}</span>

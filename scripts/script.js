@@ -242,7 +242,7 @@ function checkToDoList() {
 
 function isCategorySelected() {
     if (document.querySelector(".selected-category")) {
-        const category = document.querySelector(".selected-category").getAttribute("category").trim();
+        const category = document.querySelector(".selected-category").getAttribute("category");
         return category;
     } else {
         const category = "🕓 General"
